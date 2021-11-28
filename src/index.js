@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useForm, FormProvider } from 'react-hook-form';
+import { DevTool } from '@hookform/devtools';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -33,13 +34,16 @@ function App() {
 
   const onsubmit = (data) => console.log(data);
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onsubmit)}>
-        <Company />
-        <Address />
-        <Button type="submit">Register</Button>
-      </form>
-    </FormProvider>
+    <div>
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onsubmit)}>
+          <Company />
+          <Address />
+          <Button type="submit">Register</Button>
+        </form>
+        <DevTool control={methods.control} />
+      </FormProvider>
+    </div>
   );
 }
 
